@@ -1,8 +1,12 @@
-import { createContext, PropsWithChildren, useState } from "react";
+import { createContext, useState } from "react";
 
 const AuthContext = createContext({});
 
-export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
+type AuthProviderProps = {
+  children: React.ReactNode;
+};
+
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [auth, setAuth] = useState({});
 
   return (

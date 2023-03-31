@@ -1,20 +1,19 @@
-import styled from "styled-components";
+import { useEffect, useState } from "react";
 
-const FooterWrapper = styled.footer`
-  width: 100%;
-  margin: 0 auto;
-  padding: 0.5rem;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  background-color: #1f1d2b;
-  color: white;
-`;
+import classes from "./Footer.module.scss";
 
 export default function Footer() {
+  const [thisYear, setThisYear] = useState("");
+
+  useEffect(() => {
+    setThisYear(new Date().getFullYear().toString());
+  }, []);
+
   return (
-    <FooterWrapper>
-      <small>&copy; Peace - War Films Archives - 2022</small>
-    </FooterWrapper>
+    <footer className={classes.footer}>
+      <small>
+        &copy; Peace {thisYear} <br /> - War Films Archives -
+      </small>
+    </footer>
   );
 }

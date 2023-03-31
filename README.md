@@ -53,6 +53,7 @@ Features
 - Connect to backend API using axios
 - Holding states in grobal using Context API (useContext, createContext, Context Provider)
 - Protected Route using react-router-dom \*check if there is new way
+- custom hooks (useAuth())
 
 ---
 
@@ -68,5 +69,12 @@ Dependenseas
 - fontawsome : icon
   `npm i @fortawesome/react-fontawesome@latest @fortawesome/free-solid-svg-icons @fortawesome/fontawesome-svg-core`
 
-- react-router-dom v6
-  \*\* latest version has different approach to use it, so let me take a learn memo
+- react-router-dom v6.9.0
+  `npm i react-router-dom`
+
+---
+
+1. Build
+2. File structure
+
+-

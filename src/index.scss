@@ -29,10 +29,25 @@ a {
 grobal style
 */
 
+:root {
+  --theme-font: "Inter", sans-serif;
+  --theme-bg: #1f1d2b;
+  --theme-color: #808191;
+  --button-bg: #353340;
+  --border-color: rgb(128 129 145 / 24%);
+  --video-bg: #252936;
+
+  --logo-size: 26px;
+  --title-size: 18px;
+  --theme-size: 16px;
+
+  --drop-bg: #1f1d2bc3;
+}
+
 body {
-  font-family: "Inter", sans-serif;
-  color: #808191;
-  background-color: #1f1d2b;
+  font-family: var(--theme-font);
+  color: var(--theme-color);
+  background-color: var(--theme-bg);
 }
 
 /* 
@@ -40,7 +55,7 @@ for auth components
 TODO: should put these inside each components
 */
 
-.errmsg {
+/* .errmsg {
   color: red;
 }
 
@@ -84,4 +99,4 @@ form label:not(:last-child) {
 
 form button {
   padding: 0.5rem;
-}
+} */

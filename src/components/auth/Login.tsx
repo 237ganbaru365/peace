@@ -1,14 +1,16 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
-import AuthContext from "../../context/AuthProvider";
+import React, { useRef, useState, useEffect } from "react";
+import useAuth from "../../hooks/useAuth";
 
 import axios from "../../api/axios";
+import { Link } from "react-router-dom";
 const LOGIN_URL = "/auth";
 
-const Login: React.FC = () => {
-  const { setAuth } = useContext(AuthContext);
+const Login = () => {
+  //TODO: don't use any here
+  const { setAuth }: any = useAuth();
 
   const userRef = useRef<HTMLInputElement>(null);
-  const errRef = useRef(null);
+  const errRef = useRef<HTMLParagraphElement>(null);
 
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
@@ -25,7 +27,7 @@ const Login: React.FC = () => {
     setErrMsg("");
   }, [user, pwd]);
 
-  const handleSubmit = async (e: React.ChangeEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -45,18 +47,19 @@ const Login: React.FC = () => {
       setUser("");
       setPwd("");
       setSuccess(true);
-    } catch (err) {
-      if (!err?.response) {
+      // TODO: don't use any here
+    } catch (err: any) {
+      if (!err.response) {
         setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
+      } else if (err.response.status === 400) {
         setErrMsg("Missing username or password");
-      } else if (err.response?.status === 401) {
+      } else if (err.response.status === 401) {
         setErrMsg("Unauthorized");
       } else {
         setErrMsg("Login failed");
       }
 
-      errRef.current.focus();
+      errRef?.current?.focus();
     }
   };
 
@@ -98,13 +101,17 @@ const Login: React.FC = () => {
                 value={pwd}
               />
             </label>
-            <button type="submit">Sign In</button>
+            <button
+              type="submit"
+              disabled={!user || !pwd || !errMsg || !success ? true : false}
+            >
+              Sign In
+            </button>
           </form>
           <p>
             Need an Account? <br />
             <span className="line">
-              {/* put router link later */}
-              <a href="#">Sign In</a>
+              <Link to="/signup">Sign Up</Link>
             </span>
           </p>
         </section>

@@ -7,6 +7,7 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-*]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -17,12 +18,12 @@ interface LoginFormValue {
   pwd: string;
 }
 
-const Register: React.FC = () => {
+const Register = () => {
   //TODO: recheck how useRef() works again
   //TODO: check HTML aria or accessibility
   //TODO: check Typescript for async
   const userRef = useRef<HTMLInputElement>(null);
-  const errRef = useRef(null);
+  const errRef = useRef<HTMLParagraphElement>(null);
 
   const [user, setUser] = useState("");
   const [validName, setValidName] = useState(false);
@@ -40,9 +41,7 @@ const Register: React.FC = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    if (userRef.current) {
-      userRef.current.focus();
-    }
+    userRef?.current?.focus();
   }, []);
 
   useEffect(() => {
@@ -65,7 +64,7 @@ const Register: React.FC = () => {
     setErrMsg("");
   }, [user, pwd, matchPwd]);
 
-  const handleSubmit = async (e: React.ChangeEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     //if button enabled with JS hack
@@ -85,24 +84,25 @@ const Register: React.FC = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
-      console.log(response.accessToken);
-      console.log(JSON.stringify(response));
+      // console.log(response.data);
+      // console.log(response.accessToken);
+      // console.log(JSON.stringify(response));
+
       setSuccess(true);
 
       //clear input fields each time user submit
       setUser("");
       setPwd("");
       setMatchPwd("");
-    } catch (err) {
-      if (!err?.response) {
+    } catch (err: any) {
+      if (!err.response) {
         setErrMsg("No server Response");
-      } else if (err.response?.status === 409) {
+      } else if (err.response.status === 409) {
         setErrMsg("Username Taken");
       } else {
         setErrMsg("Registration Failed");
       }
-      errRef.current.focus();
+      errRef?.current?.focus();
     }
   };
 
@@ -229,8 +229,7 @@ const Register: React.FC = () => {
           <p>
             Already registerd? <br />
             <span className="line">
-              {/* put router link later */}
-              <a href="#">Sign In</a>
+              <Link to="/login">Sign In</Link>
             </span>
           </p>
         </section>

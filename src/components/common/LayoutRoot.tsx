@@ -1,27 +1,20 @@
+import { Outlet } from "react-router-dom";
+
 import Footer from "./Footer";
 import Header from "./Header";
 import SideBar from "./SideBar";
-
-import styled from "styled-components";
-import { Outlet } from "react-router-dom";
-
-const StyledWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-`;
+import classes from "./LayoutRoot.module.scss";
 
 const LayoutRoot = () => {
   return (
-    <StyledWrapper>
+    <section className={classes.layout}>
       <SideBar />
-      <div>
-        <Header />
-        <main>
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
-    </StyledWrapper>
+      <Header />
+      <main className={classes.content}>
+        <Outlet />
+      </main>
+      <Footer />
+    </section>
   );
 };
 
