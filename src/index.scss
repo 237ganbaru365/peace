@@ -12,7 +12,7 @@ reset broweser style
 }
 
 img {
-  max-width: 100%;
+  width: 100%;
 }
 
 ul,
@@ -33,9 +33,11 @@ grobal style
   --theme-font: "Inter", sans-serif;
   --theme-bg: #1f1d2b;
   --theme-color: #808191;
+
   --button-bg: #353340;
-  --border-color: rgb(128 129 145 / 24%);
   --video-bg: #252936;
+  --card-bg: #3533404a;
+  --border-color: rgb(128 129 145 / 24%);
 
   --logo-size: 26px;
   --title-size: 18px;

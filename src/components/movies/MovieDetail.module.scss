@@ -1,0 +1,42 @@
+.movie {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: contain;
+  background-position: center;
+  height: auto;
+
+  &-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  &-info {
+    &__title {
+      font-weight: 600;
+      font-size: 28px;
+    }
+
+    &__heading {
+      font-size: 16px;
+      font-weight: 400;
+      border: 1px solid var(--border-color);
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      margin-top: 30px;
+    }
+
+    &__story {
+      padding: 10px 0 20px;
+    }
+  }
+}
+
+.border {
+  display: block;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}

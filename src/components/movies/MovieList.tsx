@@ -1,18 +1,11 @@
-import { TMovie } from "../../type";
+import { TMovie, TMovieListProps } from "../../type";
 import MovieItem from "./MovieItem";
 
-type MovieListProps = {
-  movies: TMovie[];
-  isPickup?: boolean;
-};
-
-export default function MovieList({ movies, isPickup }: MovieListProps) {
+export default function MovieList({ movies }: TMovieListProps) {
   return (
     <>
       {movies.length >= 0 ? (
-        movies.map((movie) => (
-          <MovieItem key={movie.id} movie={movie} isPickup={isPickup} />
-        ))
+        movies.map((movie) => <MovieItem key={movie.id} movie={movie} />)
       ) : (
         <p>No movies...</p>
       )}

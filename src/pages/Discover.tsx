@@ -1,25 +1,27 @@
-import React, { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { getAllMovie } from "../api/movies";
 import MovieList from "../components/movies/MovieList";
 import { TMovie } from "../type";
 
+import classes from "./Discover.module.scss";
+
 const Discover = () => {
-  const [movies, setMovies] = useState([]);
-
-  const fetchAllMovies = async () => {
-    const response = await getAllMovie();
-    setMovies(response.results);
-  };
-
-  useEffect(() => {
-    fetchAllMovies();
-  }, []);
+  const movies = useLoaderData();
 
   return (
-    <>
-      <MovieList movies={movies} />
-    </>
+    <section className={classes.content}>
+      {(movies as TMovie[]).length ? (
+        <MovieList movies={movies as TMovie[]} />
+      ) : (
+        <p>No movies yet...</p>
+      )}
+    </section>
   );
 };
 
 export default Discover;
+
+export const loader = async () => {
+  const response = await getAllMovie();
+  return response.results;
+};

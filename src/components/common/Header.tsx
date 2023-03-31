@@ -10,6 +10,7 @@ export default function Header() {
         <input type="text" placeholder="Search" />
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </form>
+      {/*TODO: check if user login or not */}
       <div className={classes.userbar}>
         <img className={classes["userbar-icon"]} />
         <p className={classes["userbar-name"]}>Fumina</p>

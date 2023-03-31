@@ -55,6 +55,10 @@ Features
 - Protected Route using react-router-dom \*check if there is new way
 - custom hooks (useAuth())
 
+2. latest react-route-dom
+   use `useLoaderData()` which can allow us to omit using useEffect or useState and it can be less
+   before render the route component, react-route-dom provide data using it
+
 ---
 
 Dependenseas
@@ -62,19 +66,8 @@ Dependenseas
 - axios : fetch API
   `npm i axios`
 
-- styled-components : style in js
-  `npm install --save styled-components`
-  `npm install --save-dev @types/styled-components`
-
 - fontawsome : icon
   `npm i @fortawesome/react-fontawesome@latest @fortawesome/free-solid-svg-icons @fortawesome/fontawesome-svg-core`
 
 - react-router-dom v6.9.0
   `npm i react-router-dom`
-
----
-
-1. Build
-2. File structure
-
--

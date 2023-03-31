@@ -1,26 +1,21 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { getMoviesByGenre } from "../api/movies";
+import { TMovie } from "../type";
+
 import MovieList from "../components/movies/MovieList";
 
 const Category = () => {
-  const [movies, setMovies] = useState([]);
-  const genreId = useParams();
-
-  const fetchMoviesByCategory = async () => {
-    const response = await getMoviesByGenre(genreId.genreId);
-    setMovies(response.results);
-  };
-
-  useEffect(() => {
-    fetchMoviesByCategory();
-  }, [genreId]);
-
+  const movies = useLoaderData();
   return (
     <section>
-      <MovieList movies={movies} />
+      <MovieList movies={movies as TMovie[]} />
     </section>
   );
 };
 
 export default Category;
+
+export const loader = async ({ params }: any) => {
+  const response = await getMoviesByGenre(params.genreId);
+  return response.results;
+};

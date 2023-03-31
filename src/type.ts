@@ -8,3 +8,15 @@ export interface TMovie {
   vote_average: number;
   vote_count: number;
 }
+
+export interface TChildrenProps {
+  children: React.ReactNode;
+}
+
+export interface TMovieListProps {
+  movies: TMovie[];
+}
+
+export interface TMovieItemProps {
+  movie: TMovie;
+}

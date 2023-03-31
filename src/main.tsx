@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider";
 
-import RequireAuth from "./components/auth/RequireAuth";
 import LayoutRoot from "./components/common/LayoutRoot";
 import ErrorPage from "./components/common/ErrorPage";
-import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
 import MovieDetail from "./components/movies/MovieDetail";
 import Discover from "./pages/Discover";
+import Category from "./pages/Category";
+
+import { loader as discoverLoader } from "./pages/Discover";
+import { loader as categoryLoader } from "./pages/Category";
+import { loader as detailLoader } from "./components/movies/MovieDetail";
 
 import "./index.scss";
-import Category from "./pages/Category";
 
 const router = createBrowserRouter([
   {
@@ -21,15 +22,18 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/discover",
+        path: "/movie",
+        loader: discoverLoader,
         element: <Discover />,
       },
       {
-        path: "/discover/:movieId",
+        path: "/movie/:movieId",
+        loader: detailLoader,
         element: <MovieDetail />,
       },
       {
         path: "/category/:genreId",
+        loader: categoryLoader,
         element: <Category />,
       },
     ],

@@ -7,7 +7,7 @@ export const getAllMovie = async () => {
 };
 
 // get specific movie
-export const getMovie = async (movieId: string) => {
+export const getMovie = async (movieId: string | undefined) => {
   const FETCH_URL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=cdbcd1ef72fcc38fada5fc62ab05750a`;
 
   const response = await fetch(FETCH_URL);
@@ -24,7 +24,7 @@ export const getGenreList = async () => {
 };
 
 //get movie list by genre
-export const getMoviesByGenre = async (genreId: string) => {
+export const getMoviesByGenre = async (genreId: string | undefined) => {
   const FETCH_URL = `https://api.themoviedb.org/3/discover/movie?api_key=cdbcd1ef72fcc38fada5fc62ab05750a&with_genres=${genreId}`;
 
   const response = await fetch(FETCH_URL);
